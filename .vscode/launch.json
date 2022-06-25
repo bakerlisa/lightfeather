@@ -9,6 +9,16 @@
             "projectName": "demo",
             "args": "",
             "envFile": "${workspaceFolder}/.env"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-DemoApplication<com.codingdojo.project>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.lightfeather.demo.DemoApplication",
+            "projectName": "com.codingdojo.project",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
         }
     ]
 }
