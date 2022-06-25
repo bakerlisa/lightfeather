@@ -2,17 +2,24 @@ package com.lightfeather.models;
 
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 import javax.validation.constraints.Email;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import org.hibernate.annotations.ManyToAny;
 import org.springframework.format.annotation.DateTimeFormat;
 
 
@@ -21,16 +28,21 @@ import org.springframework.format.annotation.DateTimeFormat;
 public class People {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     
+    @NotNull
     @Size(min=3)
     private String fname;
-
+    
+    @NotNull
     @Size(min=3)
     private String lname;
 
+    @NotNull
     @Email
     private String email;
 
+    @NotNull
     @Size(min=10)
     private int number;
 
@@ -41,10 +53,13 @@ public class People {
     @DateTimeFormat(pattern="yyyy-MM-dd")
     private Date updatedAt;
 
+    // RELATIONSHIPS
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="position_id")
+    private Position position;
+
     // CONSTRUCTORS
-    public People() {
-    
-    }
+    public People(){}
 
     public People(Long id, String fname, String lname, String email, int number) {
         this.id = id;
@@ -62,6 +77,17 @@ public class People {
         this.number = number;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
+    }
+
+    public People(Long id, String fname, String lname, String email, int number, Date createdAt, Date updatedAt, Position position) {
+        this.id = id;
+        this.fname = fname;
+        this.lname = lname;
+        this.email = email;
+        this.number = number;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
+        this.position = position;
     }
 
     
@@ -120,6 +146,14 @@ public class People {
 
     public void setUpdatedAt(Date updatedAt) {
         this.updatedAt = updatedAt;
+    }
+
+    public Position getPosition() {
+        return this.position;
+    }
+
+    public void setPosition(Position position) {
+        this.position = position;
     }
 
 
