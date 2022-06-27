@@ -44,11 +44,11 @@ public class PeopleApi {
     //     return "addPerson.jsp"
     // }
 
-    @RequestMapping(value="/api/submit", method=RequestMethod.POST)
-    public People addPerson(@Valid @ModelAttribute("person") People person, BindingResult result) {
-        peopleService.createPerson(person);
-        return "redirect:/";
-    }
+    // @RequestMapping(value="/api/submit", method=RequestMethod.POST)
+    // public People addPerson(@Valid @ModelAttribute("person") People person, BindingResult result) {
+    //     peopleService.createPerson(person);
+    //     return "redirect:/";
+    // }
 
     // @GetMapping("/")
     // public void dashboard(HttpServletRequest response){

@@ -4,12 +4,9 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
@@ -29,11 +26,11 @@ public class People {
     
     @NotNull
     @Size(min=3)
-    private String fname;
+    private String firstName;
     
     @NotNull
     @Size(min=3)
-    private String lname;
+    private String lastName;
 
     @NotNull
     @Email
@@ -43,7 +40,7 @@ public class People {
 
     @NotNull
     @Size(min=10)
-    private int number;
+    private int phoneNumber;
 
     private boolean tcontact;
 
@@ -60,33 +57,33 @@ public class People {
     // CONSTRUCTORS
     public People(){}
 
-    public People(Long id, String fname, String lname, String email, int number, String supervisor) {
+    public People(Long id, String firstName, String lastName, String email, int phoneNumber, String supervisor) {
         this.id = id;
-        this.fname = fname;
-        this.lname = lname;
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.email = email;
-        this.number = number;
+        this.phoneNumber = phoneNumber;
         this.supervisor = supervisor;
     }
 
-    public People(Long id, String fname, String lname, String email, boolean econtact, int number, boolean tcontact, String supervisor) {
+    public People(Long id, String firstName, String lastName, String email, boolean econtact, int phoneNumber, boolean tcontact, String supervisor) {
         this.id = id;
-        this.fname = fname;
-        this.lname = lname;
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.email = email;
         this.econtact = econtact;
-        this.number = number;
+        this.phoneNumber = phoneNumber;
         this.tcontact = tcontact;
         this.supervisor = supervisor;
     }
 
-    public People(Long id, String fname, String lname, String email, boolean econtact, int number, boolean tcontact, String supervisor, Date createdAt, Date updatedAt) {
+    public People(Long id, String firstName, String lastName, String email, boolean econtact, int number, boolean tcontact, String supervisor, Date createdAt, Date updatedAt) {
         this.id = id;
-        this.fname = fname;
-        this.lname = lname;
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.email = email;
         this.econtact = econtact;
-        this.number = number;
+        this.phoneNumber = phoneNumber;
         this.tcontact = tcontact;
         this.supervisor = supervisor;
         this.createdAt = createdAt;
@@ -107,20 +104,20 @@ public class People {
         this.id = id;
     }
 
-    public String getFname() {
-        return this.fname;
+    public String getfirstName() {
+        return this.firstName;
     }
 
-    public void setFname(String fname) {
-        this.fname = fname;
+    public void setfirstName(String firstName) {
+        this.firstName = firstName;
     }
 
-    public String getLname() {
-        return this.lname;
+    public String getlastName() {
+        return this.lastName;
     }
 
-    public void setLname(String lname) {
-        this.lname = lname;
+    public void setlastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public String getEmail() {
@@ -143,12 +140,12 @@ public class People {
         this.econtact = econtact;
     }
 
-    public int getNumber() {
-        return this.number;
+    public int getphoneNumber() {
+        return this.phoneNumber;
     }
 
-    public void setNumber(int number) {
-        this.number = number;
+    public void setphoneNumber(int phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 
     public boolean isTcontact() {
