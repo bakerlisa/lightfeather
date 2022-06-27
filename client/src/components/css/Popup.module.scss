@@ -8,14 +8,15 @@
     }
     h3{padding: 25px;text-align: center; background-color: $steal_blue;}
     h4{padding: 15px 0;}
-    .required{color:$red;padding-bottom: 15px; font-weight: 600;font-size: 16px;}    
+    .required{color:$red; padding-bottom: 15px; font-weight: 600;font-size: 16px;}    
 }
 
 form{
     padding: 25px; background-color: $gray_blue;
     label{display: block;width: 100%; padding-top: 15px;}
-    input, select{padding: 10px; display: block;width: 100%;
+    input, select{padding: 10px; display: block;width: 100%;  @include border-styles($clear); @include trans(.25s);
         &[type='checkbox']{height:15px; width: 25px;}
+        &:focus{outline: none;  @include border-styles($green); @include trans(.25s);}
     }
     
     .submit{background-color:$green; color: $white; padding: 10px; margin-top: 15px; @include border-styles($green); font-size: 16px; font-weight: 600; letter-spacing: 1px; @include trans(.25s);

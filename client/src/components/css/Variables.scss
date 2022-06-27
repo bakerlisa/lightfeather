@@ -3,6 +3,7 @@ $black:#000;
 $steal_blue:#6B7F85;
 $gray_blue:#C7D2D6;
 $green:#63857B;
+$clear:transparent;
 
 $red:#8C1F28;
 
@@ -29,11 +30,11 @@ $fifteen:15px;
 
 // Transitions
 @mixin trans($x){
-    -webkit-transition: ease-in-out $x background-color; 
-    -moz-transition: ease-in-out $x background-color; 
-    -ms-transition: ease-in-out $x background-color;
-    -o-transition: ease-in-out $x background-color; 
-    transition: ease-in-out $x background-color; 
+    -webkit-transition: ease-in-out $x all; 
+    -moz-transition: ease-in-out $x all; 
+    -ms-transition: ease-in-out $x all;
+    -o-transition: ease-in-out $x all; 
+    transition: ease-in-out $x all; 
 }
 
 // TRANSFORM
