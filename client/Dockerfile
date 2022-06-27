@@ -1,13 +1,14 @@
 FROM node:17-alpine
 
-WORKDIR /app
+WORKDIR /client
+
+EXPOSE 3000
 
 COPY package.json .
 
 RUN npm install
 
-COPY . . 
 
-EXPOSE 3000
+RUN npm install
 
-CMD ["npm", "start"]
+ENTRYPOINT ["node", "index.js"]
