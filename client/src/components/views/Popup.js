@@ -1,13 +1,12 @@
-import React, { useEffect, useState, useSyncExternalStore } from 'react';
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import styled from '../css/Popup.module.scss'
-import axios from 'axios';
 
 const Popup = () => {
     const history = useHistory();
-
     const [supervisor, setSupervisor] = useState([]);
-    const [form, setForm] = useSyncExternalStore({})
+    const [form, setForm] = useState({})
 
     const lengths = {
         firstName: 3,
@@ -25,6 +24,7 @@ const Popup = () => {
     const [errMessage, setErrMessage] = useState(" ")
     var errorSize = Object.keys(dbError).length;
 
+    // email handeler
     function ValidateEmail(event) {
         setForm({...form,[event.target.name]:event.target.value})
 
@@ -35,6 +35,7 @@ const Popup = () => {
         }
     }
 
+    // input handeler
     const onChangeHandler = (event) => {
         setForm({...form,[event.target.name]: event.target.value})
 
@@ -45,6 +46,11 @@ const Popup = () => {
                 setError({...error,[event.target.name]:false})
             }
         }
+    }
+    
+    // checkbox handeler
+    const onCheckboxChange = (event) => {
+        console.log("here")
     }
 
     // sorts supervisors
