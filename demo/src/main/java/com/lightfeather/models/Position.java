@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -12,11 +13,14 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
+import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+@Entity
+@Table(name="position")
 public class Position {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -54,6 +58,7 @@ public class Position {
     }
 
     public Position(Long id, String title, Date createdAt, Date updatedAt, List<People> people) {
+        
         this.id = id;
         this.title = title;
         this.createdAt = createdAt;
@@ -62,7 +67,6 @@ public class Position {
     }
 
     // GETTERS / SETTERS
-
     public Long getId() {
         return this.id;
     }

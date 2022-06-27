@@ -2,7 +2,6 @@ package com.lightfeather.models;
 
 import java.util.Date;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -153,7 +152,6 @@ public class People {
     public void setPosition(Position position) {
         this.position = position;
     }
-
 
     @PrePersist
     protected void onCreate(){
