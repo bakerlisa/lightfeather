@@ -1,7 +1,9 @@
 # LightFeather - At Home Coding Challenge
 
-### Starts up React
-1. client folder -> npm start
+Need 2 tabs open in terminal
 
-### Starts up Srpingboot
+### 1. Starts up React
+client folder -> npm start
+
+### 2. Starts up SpringBoot
 lightfeather -> mvn spring-boot:run
