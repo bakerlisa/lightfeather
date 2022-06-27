@@ -32,13 +32,11 @@ public class People {
     @Size(min=3)
     private String lastName;
 
-    @NotNull
     @Email
     private String email;
 
     private boolean econtact;
 
-    @NotNull
     @Size(min=10)
     private int phoneNumber;
 

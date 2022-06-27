@@ -1,4 +1,4 @@
-package com.lightfeather.lightfeather.models.controllers;
+package com.lightfeather.lightfeather.controllers;
 
 import java.util.List;
 
@@ -14,13 +14,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.lightfeather.lightfeather.models.People;
-import com.lightfeather.lightfeather.repositorties.services.PeopleService;
+import com.lightfeather.lightfeather.services.PeopleService;
+
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 
 
-@RestController
+@RequestMapping
 public class PeopleApi {
     private final PeopleService peopleService;
 
@@ -44,18 +45,15 @@ public class PeopleApi {
     //     return "addPerson.jsp"
     // }
 
-    // @RequestMapping(value="/api/submit", method=RequestMethod.POST)
-    // public People addPerson(@Valid @ModelAttribute("person") People person, BindingResult result) {
-    //     peopleService.createPerson(person);
-    //     return "redirect:/";
-    // }
+    @RequestMapping(value="/api/submit", method=RequestMethod.POST)
+    public People addPerson(@Valid @ModelAttribute("person") People person, BindingResult result) {
+        peopleService.createPerson(person);
+        return "redirect:/";
+    }
 
-    // @GetMapping("/")
-    // public void dashboard(HttpServletRequest response){
-    //     response.setHeader("Location", "localhost:3000/");
-    //     response.setStatus(302);
-    // }
-
-    
-    
+    @GetMapping("/")
+    public void dashboard(HttpServletRequest response){
+        response.setHeader("Location", "localhost:3000/");
+        response.setStatus(302);
+    }
 }

@@ -1,4 +1,4 @@
-package com.lightfeather.lightfeather.repositorties.services;
+package com.lightfeather.lightfeather.services;
 
 import java.util.List;
 import java.util.Optional;
