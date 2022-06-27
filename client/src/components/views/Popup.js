@@ -6,7 +6,10 @@ import styled from '../css/Popup.module.scss'
 const Popup = () => {
     const history = useHistory();
     const [supervisor, setSupervisor] = useState([]);
-    const [form, setForm] = useState({})
+    const [form, setForm] = useState({
+        econtact:false,
+        tcontact:false
+    })
 
     const lengths = {
         firstName: 3,
@@ -50,7 +53,11 @@ const Popup = () => {
     
     // checkbox handeler
     const onCheckboxChange = (event) => {
-        console.log("here")
+        if(form[event.target.name] === true){
+            setForm({...form,[event.target.name]:false})
+        }else{
+            setForm({...form,[event.target.name]:true})
+        }
     }
 
     // sorts supervisors
@@ -72,6 +79,27 @@ const Popup = () => {
         )
     }
 
+    // on sumbit handler
+    const onSubmitHandler = (event) =>{
+        event.preventDefault();
+        axios.post('http://localhost:8080/api/submit',form).then(response=>{
+            if(response.data.user.length <= 0){
+                setErrMessage("Credeitnals don't match, try again")
+            }else{
+                setUser(response.data.user[0])
+                setMessage("Thank You!")
+                // window.location.reload(false);
+            }  
+        })
+        .catch(err => {
+            setDBError(err.response.data.error.errors)
+        });
+    }
+
+    // on sucesssful user creation
+    const [message,setMessage] = useState("")
+    const [user,setUser] = useState([])
+
     useEffect(() => {
         axios.get('https://o3m5qixdng.execute-api.us-east-1.amazonaws.com/api/managers')
         .then(response=>{
@@ -82,24 +110,24 @@ const Popup = () => {
     return (
         <div className={styled.popWrp}>
             <h3>Notification Form</h3>
-            <form>
+            <form onSubmit={onSubmitHandler}>
                 <p className={styled.required}>* Required Fields</p>
 
                 <div>
                     <label htmlFor="firstName">*First Name</label>
-                    <input type="text" name="firstName" placeholder="First Name" />
+                    <input type="text" name="firstName" placeholder="First Name" onChange={onChangeHandler} />
                 </div>
 
                 <div>
                     <label htmlFor="lastName">*Last Name</label>
-                    <input type="text" name="lastName" placeholder="Last Name" />
+                    <input type="text" name="lastName" placeholder="Last Name"  onChange={onChangeHandler}/>
                 </div>
 
                 <h4>How woud you prefer to be notified?</h4>
                 <div className="flex">
                     <div className={styled.col_2}>
                         <div>
-                            <input type="checkbox" name="econtact" />
+                            <input type="checkbox" name="econtact" onChange={onCheckboxChange} />
                             <label htmlFor="email">*Email</label>
                         </div>
                         <input type="email" name="email" placeholder="Email: example@email.com..."  onChange={ValidateEmail} />
@@ -107,16 +135,16 @@ const Popup = () => {
 
                     <div className={styled.col_2}>
                         <div>
-                            <input type="checkbox" name="tcontact" />
+                            <input type="checkbox" name="tcontact" onChange={onCheckboxChange} />
                             <label htmlFor="phoneNumber">Phone:</label>
                         </div>
-                        <input type="tel" name="phoneNumber" placeholder="Phone Number..." />
+                        <input type="tel" name="phoneNumber" placeholder="Phone Number..." onChange={onChangeHandler} />
                     </div>
                 </div>
 
                 <div>
                     <label htmlFor="supervisor">*Supervisor</label>
-                    <select name="supervisor" defaultValue="default">
+                    <select name="supervisor" defaultValue="default" onChange={onChangeHandler}>
                         <option value="default" disabled >Select...</option>
                         {supervisor.length === 0 ? "" : supervisor.map((item,i) => {
                             if(parseInt(item.jurisdiction) || parseInt(item.jurisdiction) === 0) {
@@ -126,7 +154,10 @@ const Popup = () => {
                         })}
                     </select>
                 </div>
-                <input type="submit" value="Submit" className={styled.submit} />
+                {
+                    Object.keys(error).every((item) => error[item]) ? <input type="submit" value="Submit" className={styled.submit} /> : <input type="submit" value="Submit" className={styled.disabled} disabled />
+                }
+
             </form>
         </div>
     )
