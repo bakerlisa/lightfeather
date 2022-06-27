@@ -39,9 +39,13 @@ public class People {
     @Email
     private String email;
 
+    private boolean econtact;
+
     @NotNull
     @Size(min=10)
     private int number;
+
+    private boolean tcontact;
 
     @NotNull
     private String supervisor;
@@ -65,20 +69,36 @@ public class People {
         this.supervisor = supervisor;
     }
 
-    public People(Long id, String fname, String lname, String email, int number, String supervisor, Date createdAt, Date updatedAt) {
+    public People(Long id, String fname, String lname, String email, boolean econtact, int number, boolean tcontact, String supervisor) {
         this.id = id;
         this.fname = fname;
         this.lname = lname;
         this.email = email;
+        this.econtact = econtact;
         this.number = number;
+        this.tcontact = tcontact;
+        this.supervisor = supervisor;
+    }
+
+    public People(Long id, String fname, String lname, String email, boolean econtact, int number, boolean tcontact, String supervisor, Date createdAt, Date updatedAt) {
+        this.id = id;
+        this.fname = fname;
+        this.lname = lname;
+        this.email = email;
+        this.econtact = econtact;
+        this.number = number;
+        this.tcontact = tcontact;
         this.supervisor = supervisor;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
     }
+
     
 
     
     // GETTERS / SETTERS
+    
+
     public Long getId() {
         return this.id;
     }
@@ -111,12 +131,36 @@ public class People {
         this.email = email;
     }
 
+    public boolean isEcontact() {
+        return this.econtact;
+    }
+
+    public boolean getEcontact() {
+        return this.econtact;
+    }
+
+    public void setEcontact(boolean econtact) {
+        this.econtact = econtact;
+    }
+
     public int getNumber() {
         return this.number;
     }
 
     public void setNumber(int number) {
         this.number = number;
+    }
+
+    public boolean isTcontact() {
+        return this.tcontact;
+    }
+
+    public boolean getTcontact() {
+        return this.tcontact;
+    }
+
+    public void setTcontact(boolean tcontact) {
+        this.tcontact = tcontact;
     }
 
     public String getSupervisor() {

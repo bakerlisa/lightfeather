@@ -2,8 +2,13 @@ package com.lightfeather.lightfeather.models.controllers;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 import javax.xml.ws.RequestWrapper;
 
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -34,10 +39,23 @@ public class PeopleApi {
         return people;
     }
 
-    // @RequestMapping(value="/api/create/person", method=RequestMethod.GET)
-    // public SomeData requestMethodName(@RequestParam String param) {
-    //     return new SomeData();
+    // @GetMapping('/people/new')
+    // public String newPerson(@ModelAttribute("person") People person){
+    //     return "addPerson.jsp"
     // }
+
+    @RequestMapping(value="/api/submit", method=RequestMethod.POST)
+    public People addPerson(@Valid @ModelAttribute("person") People person, BindingResult result) {
+        peopleService.createPerson(person);
+        return "redirect:/";
+    }
+
+    // @GetMapping("/")
+    // public void dashboard(HttpServletRequest response){
+    //     response.setHeader("Location", "localhost:3000/");
+    //     response.setStatus(302);
+    // }
+
     
     
 }
