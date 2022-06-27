@@ -1,0 +1,44 @@
+$white:#fff;
+$black:#000;
+$steal_blue:#6B7F85;
+$gray_blue:#C7D2D6;
+$green:#63857B;
+
+$red:#8C1F28;
+
+// BORDER
+
+@mixin border-styles($clr) {
+    border: solid 2px $clr;
+}
+// GRID
+$col_2:50%;
+$fifteen:15px;
+
+@media all and (max-width:1000px){
+    $col_2:100%;
+    $fifteen:0px;
+}
+
+// Box shadows
+@mixin box-shadow(){
+    box-shadow: 0px 2px 40px 0px rgba(0,0,0,0.15);
+    -webkit-box-shadow: 0px 2px 40px 0px rgba(0,0,0,0.15);
+    -moz-box-shadow: 0px 2px 40px 0px rgba(0,0,0,0.15);
+}
+
+// Transitions
+@mixin trans($x){
+    -webkit-transition: ease-in-out $x background-color; 
+    -moz-transition: ease-in-out $x background-color; 
+    -ms-transition: ease-in-out $x background-color;
+    -o-transition: ease-in-out $x background-color; 
+    transition: ease-in-out $x background-color; 
+}
+
+// TRANSFORM
+@mixin transform($property) {
+    -webkit-transform: $property;
+    -ms-transform: $property;
+    transform: $property;
+}
