@@ -43,6 +43,9 @@ public class People {
     @Size(min=10)
     private int number;
 
+    @NotNull
+    private String supervisor;
+
     // This will not allow the createdAt column to be updated after creation
     @Column(updatable=false)
     @DateTimeFormat(pattern="yyyy-MM-dd")
@@ -50,42 +53,29 @@ public class People {
     @DateTimeFormat(pattern="yyyy-MM-dd")
     private Date updatedAt;
 
-    // RELATIONSHIPS
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="position_id")
-    private Position position;
-
     // CONSTRUCTORS
     public People(){}
 
-    public People(Long id, String fname, String lname, String email, int number) {
+    public People(Long id, String fname, String lname, String email, int number, String supervisor) {
         this.id = id;
         this.fname = fname;
         this.lname = lname;
         this.email = email;
         this.number = number;
+        this.supervisor = supervisor;
     }
 
-    public People(Long id, String fname, String lname, String email, int number, Date createdAt, Date updatedAt) {
+    public People(Long id, String fname, String lname, String email, int number, String supervisor, Date createdAt, Date updatedAt) {
         this.id = id;
         this.fname = fname;
         this.lname = lname;
         this.email = email;
         this.number = number;
+        this.supervisor = supervisor;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
     }
-
-    public People(Long id, String fname, String lname, String email, int number, Date createdAt, Date updatedAt, Position position) {
-        this.id = id;
-        this.fname = fname;
-        this.lname = lname;
-        this.email = email;
-        this.number = number;
-        this.createdAt = createdAt;
-        this.updatedAt = updatedAt;
-        this.position = position;
-    }
+    
 
     
     // GETTERS / SETTERS
@@ -129,6 +119,14 @@ public class People {
         this.number = number;
     }
 
+    public String getSupervisor() {
+        return this.supervisor;
+    }
+
+    public void setSupervisor(String supervisor) {
+        this.supervisor = supervisor;
+    }
+
     public Date getCreatedAt() {
         return this.createdAt;
     }
@@ -143,14 +141,6 @@ public class People {
 
     public void setUpdatedAt(Date updatedAt) {
         this.updatedAt = updatedAt;
-    }
-
-    public Position getPosition() {
-        return this.position;
-    }
-
-    public void setPosition(Position position) {
-        this.position = position;
     }
 
     @PrePersist
