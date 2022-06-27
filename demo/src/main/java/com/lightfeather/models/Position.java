@@ -15,7 +15,6 @@ import javax.persistence.PreUpdate;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-import org.springframework.aop.framework.autoproxy.target.QuickTargetSourceCreator;
 import org.springframework.format.annotation.DateTimeFormat;
 
 public class Position {
