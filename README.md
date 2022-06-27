@@ -1,4 +1,4 @@
-# lightfeather
+# LightFeather - At Home Coding Challenge
 
-1. docker run lightfeather  
+1. client folder -> npm start
 2. 
