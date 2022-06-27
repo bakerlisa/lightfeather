@@ -19,6 +19,16 @@
             "projectName": "com.codingdojo.project",
             "args": "",
             "envFile": "${workspaceFolder}/.env"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-LightfeatherApplication<lightfeather>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.lightfeather.lightfeather.LightfeatherApplication",
+            "projectName": "lightfeather",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
         }
     ]
 }

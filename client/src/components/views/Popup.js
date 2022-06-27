@@ -84,7 +84,7 @@ const Popup = () => {
         event.preventDefault();
         axios.post('http://localhost:8080/api/submit',form).then(response=>{
             if(response.data.user.length <= 0){
-                setErrMessage("Credeitnals don't match, try again")
+                setErrMessage("There has been an error in your submission")
             }else{
                 setUser(response.data.user[0])
                 setMessage("Thank You!")
