@@ -1,13 +1,13 @@
-package com.lightfeather.demo;
+package com.lightfeather.lightfeather;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class DemoApplication {
+public class LightfeatherApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(DemoApplication.class, args);
+		SpringApplication.run(LightfeatherApplication.class, args);
 	}
 
 }

@@ -1,4 +1,4 @@
-package com.lightfeather.models;
+package com.lightfeather.lightfeather.models;
 
 import java.util.Date;
 

@@ -1,4 +1,4 @@
-package com.lightfeather.models;
+package com.lightfeather.lightfeather.models;
 
 import java.util.Date;
 import java.util.List;
@@ -38,7 +38,7 @@ public class Position {
     private Date updatedAt;
 
     // RELATIONSHIPS
-    @OneToMany(mappedBy="dojo", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy="position", fetch = FetchType.LAZY)
     private List<People> people;
 
     // CONSTRUCTORS

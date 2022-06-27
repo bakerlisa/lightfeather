@@ -1,10 +1,10 @@
-package com.lightfeather.demo;
+package com.lightfeather.lightfeather;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class DemoApplicationTests {
+class LightfeatherApplicationTests {
 
 	@Test
 	void contextLoads() {
