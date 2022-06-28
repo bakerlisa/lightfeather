@@ -35,9 +35,13 @@ public class People {
     private String supervisor;
 
     private String email;
-    private int phone;
-    private boolean econtact;
-    private boolean tcontact;
+
+    @Size(min=10)
+    private Long phone;
+
+    private String emailOnly;
+    private String phoneOnly;
+    
 
     // This will not allow the createdAt column to be updated after creation
     @Column(updatable=false)
@@ -47,33 +51,43 @@ public class People {
     private Date updatedAt;
 
     // CONSTRUCTORS
-    public People(){}
 
-    public People(Long id, String firstName, String lastName, String supervisor, String email, int phone, boolean econtact, boolean tcontact) {
-        this.id = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.supervisor = supervisor;
-        this.email = email;
-        this.phone = phone;
-        this.econtact = econtact;
-        this.tcontact = tcontact;
+    public People() {
     }
 
-    public People(Long id, String firstName, String lastName, String supervisor, String email, int phone, boolean econtact, boolean tcontact, Date createdAt, Date updatedAt) {
+    public People(Long id, String firstName, String lastName, String supervisor) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.supervisor = supervisor;
+    }
+
+    public People(Long id, String firstName, String lastName, String supervisor, String email, Long phone, String emailOnly, String phoneOnly) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.supervisor = supervisor;
         this.email = email;
         this.phone = phone;
-        this.econtact = econtact;
-        this.tcontact = tcontact;
+        this.emailOnly = emailOnly;
+        this.phoneOnly = phoneOnly;
+    }
+
+    public People(Long id, String firstName, String lastName, String supervisor, String email, Long phone, String emailOnly, String phoneOnly, Date createdAt, Date updatedAt) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.supervisor = supervisor;
+        this.email = email;
+        this.phone = phone;
+        this.emailOnly = emailOnly;
+        this.phoneOnly = phoneOnly;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
     }
 
     // GETTERS / SETTERS
+
     public Long getId() {
         return this.id;
     }
@@ -114,36 +128,28 @@ public class People {
         this.email = email;
     }
 
-    public int getPhone() {
+    public Long getPhone() {
         return this.phone;
     }
 
-    public void setPhone(int phone) {
+    public void setPhone(Long phone) {
         this.phone = phone;
     }
 
-    public boolean isEcontact() {
-        return this.econtact;
+    public String getEmailOnly() {
+        return this.emailOnly;
     }
 
-    public boolean getEcontact() {
-        return this.econtact;
+    public void setEmailOnly(String emailOnly) {
+        this.emailOnly = emailOnly;
     }
 
-    public void setEcontact(boolean econtact) {
-        this.econtact = econtact;
+    public String getPhoneOnly() {
+        return this.phoneOnly;
     }
 
-    public boolean isTcontact() {
-        return this.tcontact;
-    }
-
-    public boolean getTcontact() {
-        return this.tcontact;
-    }
-
-    public void setTcontact(boolean tcontact) {
-        this.tcontact = tcontact;
+    public void setPhoneOnly(String phoneOnly) {
+        this.phoneOnly = phoneOnly;
     }
 
     public Date getCreatedAt() {
@@ -161,6 +167,7 @@ public class People {
     public void setUpdatedAt(Date updatedAt) {
         this.updatedAt = updatedAt;
     }
+
 
     
     @PrePersist

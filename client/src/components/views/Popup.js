@@ -79,7 +79,8 @@ const Popup = () => {
         )
     }
 
-    const onKeyPress = (event) => {        
+    const onKeyPress = (event) => {
+        // restricts the numbers        
         if(event.nativeEvent.charCode === 48 || event.nativeEvent.charCode === 49 || event.nativeEvent.charCode === 50 || event.nativeEvent.charCode === 51 || event.nativeEvent.charCode === 52 || event.nativeEvent.charCode === 53 || event.nativeEvent.charCode === 54 || event.nativeEvent.charCode === 55 || event.nativeEvent.charCode === 56 || event.nativeEvent.charCode === 57){
 
         }else{
@@ -91,6 +92,10 @@ const Popup = () => {
         }else{
             setError({...error,[event.target.name]:false})
         }
+    }
+
+    const onBlurHandler = (event) => {
+        event.target.value = form[event.target.name]
     }
 
     // on sucesssful user creation
@@ -146,7 +151,7 @@ const Popup = () => {
 
                 <div>
                     <label htmlFor="firstName">*First Name</label>
-                    <input required type="text" name="firstName" placeholder="First Name" pattern="[a-zA-Z]*" onKeyPress={onKeyPress} value={form.firstName}/>
+                    <input required type="text" name="firstName" placeholder="First Name" onKeyPress={onKeyPress} onBlur={onBlurHandler}/>
                     {
                         error.firstName  ? "" : <span className={styled.error}>Please enter a First Name. LETTERS ONLY</span>
                     }
@@ -154,7 +159,7 @@ const Popup = () => {
 
                 <div>
                     <label htmlFor="lastName">*Last Name</label>
-                    <input required type="text" name="lastName" placeholder="Last Name" onKeyPress={onKeyPress} pattern="[0-9]{10}" value={form.lastName} />
+                    <input required type="text" name="lastName" placeholder="Last Name" onKeyPress={onKeyPress} onBlur={onBlurHandler} />
                     {
                         error.lastName ? "" : <span className={styled.error}>Please enter a Last Name. LETTERS ONLY</span>
                     }
