@@ -79,26 +79,29 @@ const Popup = () => {
         )
     }
 
-    // on sumbit handler
-    const onSubmitHandler = (event) =>{
-        event.preventDefault();
-        axios.post('http://localhost:8080/api/submit',form).then(response=>{
-            if(response.data.user.length <= 0){
-                setErrMessage("There has been an error in your submission")
-            }else{
-                setUser(response.data.user[0])
-                setMessage("Thank You!")
-                // window.location.reload(false);
-            }  
-        })
-        .catch(err => {
-            setDBError(err.response.data.error.errors)
-        });
-    }
-
     // on sucesssful user creation
     const [message,setMessage] = useState("")
     const [user,setUser] = useState([])
+
+    // on sumbit handler
+    const onSubmitHandler = (event) =>{
+        event.preventDefault();
+        // axios.post('http://localhost:8080/api/submit',form).then(response=>{
+        //     if(response.data.user.length <= 0){
+        //         setErrMessage("There has been an error in your submission")
+        //     }else{
+        //         setUser(response.data.user[0])
+        //         setMessage("Thank You!")
+        //         // window.location.reload(false);
+        //     }  
+        // })
+        // .catch(err => {
+        //     console.log(err.response.data.error.errors)
+        //     setDBError(err.response.data.error.errors)
+        // });
+        setMessage("Thank You!")
+        console.log(form);
+    }
 
     useEffect(() => {
         axios.get('https://o3m5qixdng.execute-api.us-east-1.amazonaws.com/api/managers')
@@ -109,8 +112,9 @@ const Popup = () => {
     })
     return (
         <div className={styled.popWrp}>
-            <h3>Notification Form</h3>
-            <form onSubmit={onSubmitHandler}>
+            <h3>Notification Form </h3>
+            {
+            message.length === 0 ? <form onSubmit={onSubmitHandler}>
                 <p className={styled.required}>* Required Fields</p>
 
                 <div>
@@ -128,7 +132,7 @@ const Popup = () => {
                     <div className={styled.col_2}>
                         <div>
                             <input type="checkbox" name="econtact" onChange={onCheckboxChange} />
-                            <label htmlFor="email">*Email</label>
+                            <label htmlFor="email">Email</label>
                         </div>
                         <input type="email" name="email" placeholder="Email: example@email.com..."  onChange={ValidateEmail} />
                     </div>
@@ -158,7 +162,8 @@ const Popup = () => {
                     Object.keys(error).every((item) => error[item]) ? <input type="submit" value="Submit" className={styled.submit} /> : <input type="submit" value="Submit" className={styled.disabled} disabled />
                 }
 
-            </form>
+            </form> : <p className={styled.message}>{message}</p> 
+            }
         </div>
     )
 }

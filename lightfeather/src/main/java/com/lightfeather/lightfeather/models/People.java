@@ -10,7 +10,6 @@ import javax.persistence.Id;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
-import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -32,14 +31,11 @@ public class People {
     @Size(min=3)
     private String lastName;
 
-    @Email
     private String email;
-
     private boolean econtact;
 
     @Size(min=10)
     private int phoneNumber;
-
     private boolean tcontact;
 
     @NotNull
@@ -55,15 +51,6 @@ public class People {
     // CONSTRUCTORS
     public People(){}
 
-    public People(Long id, String firstName, String lastName, String email, int phoneNumber, String supervisor) {
-        this.id = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
-        this.phoneNumber = phoneNumber;
-        this.supervisor = supervisor;
-    }
-
     public People(Long id, String firstName, String lastName, String email, boolean econtact, int phoneNumber, boolean tcontact, String supervisor) {
         this.id = id;
         this.firstName = firstName;
@@ -75,7 +62,7 @@ public class People {
         this.supervisor = supervisor;
     }
 
-    public People(Long id, String firstName, String lastName, String email, boolean econtact, int number, boolean tcontact, String supervisor, Date createdAt, Date updatedAt) {
+    public People(Long id, String firstName, String lastName, String email, boolean econtact, int phoneNumber, boolean tcontact, String supervisor, Date createdAt, Date updatedAt) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -87,13 +74,8 @@ public class People {
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
     }
-
-    
-
     
     // GETTERS / SETTERS
-    
-
     public Long getId() {
         return this.id;
     }
@@ -102,19 +84,19 @@ public class People {
         this.id = id;
     }
 
-    public String getfirstName() {
+    public String getFirstName() {
         return this.firstName;
     }
 
-    public void setfirstName(String firstName) {
+    public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
 
-    public String getlastName() {
+    public String getLastName() {
         return this.lastName;
     }
 
-    public void setlastName(String lastName) {
+    public void setLastName(String lastName) {
         this.lastName = lastName;
     }
 
@@ -138,11 +120,11 @@ public class People {
         this.econtact = econtact;
     }
 
-    public int getphoneNumber() {
+    public int getPhoneNumber() {
         return this.phoneNumber;
     }
 
-    public void setphoneNumber(int phoneNumber) {
+    public void setPhoneNumber(int phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 
