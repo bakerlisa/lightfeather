@@ -11,7 +11,6 @@ import com.lightfeather.lightfeather.models.People;
 import com.lightfeather.lightfeather.services.PeopleService;
 
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
 
 
 
