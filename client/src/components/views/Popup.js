@@ -163,7 +163,7 @@ const Popup = () => {
                 <h4>How woud you prefer to be notified?</h4>
                 <div className="flex">
                     <div className={styled.col_2}>
-                        <div>
+                        <div className={styled.chkbxwpr}>
                             <input type="checkbox" name="econtact" onChange={onCheckboxChange} />
                             <label htmlFor="email">Email</label>
                         </div>
@@ -171,7 +171,7 @@ const Popup = () => {
                     </div>
 
                     <div className={styled.col_2}>
-                        <div>
+                        <div className={styled.chkbxwpr}>
                             <input type="checkbox" name="tcontact" onChange={onCheckboxChange} />
                             <label htmlFor="phoneNumber">Phone:</label>
                         </div>
