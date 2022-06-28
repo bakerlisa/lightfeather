@@ -15,7 +15,8 @@ const Popup = () => {
     const lengths = {
         firstName: 3,
         lastName: 3,
-        supervisor: 1
+        supervisor: 1,
+        phoneNumber: 10
     }
 
     const [error,setError] = useState({
@@ -97,7 +98,7 @@ const Popup = () => {
                 }  
             })
             .catch(err => {
-                console.log(err.message)
+                console.log("err.message")
                 setDBError(err.message)
             });
         }else{
@@ -125,7 +126,7 @@ const Popup = () => {
             {
             message.length === 0 ? <form onSubmit={onSubmitHandler} method="post">
                 <p className={styled.required}>* Required Fields</p>
-                <div className="errWrp">
+                <div className={styled.errWrp}>
                     {
                         dbError.length > 0 ? dbError : ""
                     }
