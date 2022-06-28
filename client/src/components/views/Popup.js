@@ -87,7 +87,7 @@ const Popup = () => {
     const onSubmitHandler = (event) =>{
         event.preventDefault();
         if(Object.values(error).every(item => item) ){
-            axios.post('/api/submit',form).then(response=>{
+            axios.post('http://localhost:8080/api/submit',form).then(response=>{
                 console.log(response)
                 if(response.data.length <= 0){
                     setErrMessage("There has been an error in your submission")
