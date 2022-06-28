@@ -44,14 +44,9 @@ public class PeopleApi {
     }
 
     @CrossOrigin(origins = "http://localhost:3000")
-    @RequestMapping(value="/api/submit", method=RequestMethod.POST)
+    @RequestMapping(value="/api/submit/{form}", method=RequestMethod.POST)
     public void addPerson(@PathVariable("form") People form) {
         peopleService.createPerson(form);
     }
 
-    // @GetMapping("/")
-    // public void dashboard(HttpServletRequest response){
-    //     response.setHeader("Location", "localhost:3000/");
-    //     response.setStatus(302);
-    // }
 }

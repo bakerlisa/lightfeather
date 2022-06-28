@@ -19,9 +19,9 @@ const Popup = () => {
     }
 
     const [error,setError] = useState({
-        firstName: false,
-        lastName: false,
-        supervisor: false
+        firstName: true,
+        lastName: true,
+        supervisor: true
     })
 
     const [dbError,setDBError] = useState({ id:0 })

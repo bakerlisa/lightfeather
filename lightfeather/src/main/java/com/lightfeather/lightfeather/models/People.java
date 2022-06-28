@@ -73,10 +73,7 @@ public class People {
         this.updatedAt = updatedAt;
     }
 
-    
-
     // GETTERS / SETTERS
-
     public Long getId() {
         return this.id;
     }
