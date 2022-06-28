@@ -15,6 +15,7 @@ Or, if that button doesn't appear <br/>
 ![](https://github.com/lisabroadhead/lightfeather/blob/main/Screen%20Shot%202022-06-28%20at%201.58.06%20PM.png)
 
 
+### Work in Progress
 1. http://localhost:3000/people
 2. Click on any Name
 
