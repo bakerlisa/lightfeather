@@ -8,12 +8,14 @@ const Popup = () => {
     const [supervisor, setSupervisor] = useState([]);
     const [form, setForm] = useState({
         econtact:false,
-        tcontact:false
+        tcontact:false,
+        supervisor: 1
     })
 
     const lengths = {
         firstName: 3,
-        lastName: 3
+        lastName: 3,
+        supervisor: 1
     }
 
     const [error,setError] = useState({
@@ -40,13 +42,11 @@ const Popup = () => {
     // input handeler
     const onChangeHandler = (event) => {
         setForm({...form,[event.target.name]: event.target.value})
-
-        if(event.target.name in error){
-            if(event.target.value.length >= lengths[event.target.name]){
-                setError({...error,[event.target.name]:true})
-            }else{
-                setError({...error,[event.target.name]:false})
-            }
+        
+        if(event.target.value.length >= lengths[event.target.name]){
+            setError({...error,[event.target.name]:true})
+        }else{
+            setError({...error,[event.target.name]:false})
         }
     }
     
@@ -85,24 +85,29 @@ const Popup = () => {
     // on sumbit handler
     const onSubmitHandler = (event) =>{
         event.preventDefault();
-        // axios.post('http://localhost:8080/api/submit',form).then(response=>{
-        //     console.log(response)
-        //     if(response.data.length <= 0){
-        //         setErrMessage("There has been an error in your submission")
-        //     }else{
-        //         setUser(response.data.user[0])
-        //         setMessage("Thank You!")
-        //         console.log(form);
-        //     }  
-        // })
-        // .catch(err => {
-        //     console.log(err)
-        //     console.log(err.response.data.error.errors)
-        //     setDBError(err.response.data.error.errors)
-        // });
+        if(Object.values(error).every(item => item) ){
+            axios.post('http://localhost:8080/api/submit',form).then(response=>{
+                console.log(response)
+                if(response.data.length <= 0){
+                    setErrMessage("There has been an error in your submission")
+                }else{
+                    setUser(response.data.user[0])
+                    setMessage("Thank You!")
+                    console.log(form);
+                }  
+            })
+            .catch(err => {
+                console.log(err.message)
+                setDBError(err.message)
+            });
+        }else{
+            console.log('')
+        }
 
-        setMessage("Thank You!")
-        console.log(form);
+        
+
+        // setMessage("Thank You!")
+        // console.log(form)
         
     }
 
@@ -113,36 +118,32 @@ const Popup = () => {
             handleSort(response.data)
         })
     })
-    
+
     return (
         <div className={styled.popWrp}>
             <h3>Notification Form </h3>
             {
             message.length === 0 ? <form onSubmit={onSubmitHandler} method="post">
+                <p className={styled.required}>* Required Fields</p>
                 <div className="errWrp">
                     {
-                        errorSize > 1 ? <><h4>Entries Required: </h4> {Object.keys(dbError).join(', ')}</> : ""
-                    }
-
-                    {
-                        errMessage.length > 1 ? errMessage : ""
+                        dbError.length > 0 ? dbError : ""
                     }
                 </div>
-                <p className={styled.required}>* Required Fields</p>
 
                 <div>
                     <label htmlFor="firstName">*First Name</label>
-                    <input type="text" name="firstName" placeholder="First Name" onChange={onChangeHandler} />
+                    <input required type="text" name="firstName" placeholder="First Name" onChange={onChangeHandler} pattern="[a-zA-Z]*"/>
                     {
-                        error.firstName  ? "" : <span>Please enter a First Name</span>
+                        error.firstName  ? "" : <span className={styled.error}>Please enter a First Name. LETTERS ONLY</span>
                     }
                 </div>
 
                 <div>
                     <label htmlFor="lastName">*Last Name</label>
-                    <input type="text" name="lastName" placeholder="Last Name"  onChange={onChangeHandler}/>
+                    <input required type="text" name="lastName" placeholder="Last Name"  onChange={onChangeHandler} />
                     {
-                        error.lastName ? "" : <span>Please enter a Last Name</span>
+                        error.lastName ? "" : <span className={styled.error}>Please enter a Last Name. LETTERS ONLY</span>
                     }
                 </div>
 
@@ -167,8 +168,7 @@ const Popup = () => {
 
                 <div>
                     <label htmlFor="supervisor">*Supervisor</label>
-                    <select name="supervisor" defaultValue="default" onChange={onChangeHandler}>
-                        <option value="default" disabled >Select...</option>
+                    <select  name="supervisor" onChange={onChangeHandler} >
                         {supervisor.length === 0 ? "" : supervisor.map((item,i) => {
                             if(parseInt(item.jurisdiction) || parseInt(item.jurisdiction) === 0) {
                             }else{
@@ -177,7 +177,7 @@ const Popup = () => {
                         })}
                     </select>
                     {
-                        error.supervisor === false ? "" : <span>Please select a supervisor</span>
+                        error.supervisor ? "" : <span className={styled.error}>Please select a supervisor</span>
                     }
                 </div>
                 {
