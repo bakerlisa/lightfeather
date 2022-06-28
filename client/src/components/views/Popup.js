@@ -105,24 +105,25 @@ const Popup = () => {
     // on sumbit handler
     const onSubmitHandler = (event) =>{
         event.preventDefault();
-        if(Object.values(error).every(item => item) ){
-            axios.post(`http://localhost:8080/api/submit/${form}`).then(response=>{
-                console.log(response)
-                if(response.data.length <= 0){
-                    setErrMessage("There has been an error in your submission")
-                }else{
-                    setUser(response.data.user[0])
-                    setMessage("Thank You!")
-                    console.log(form);
-                }  
-            })
-            .catch(err => {
-                console.log("err.message")
-                setDBError(err.message)
-            });
-        }else{
-            console.log('')
-        }
+        // still needs work
+        // if(Object.values(error).every(item => item) ){
+        //     axios.post(`http://localhost:8080/api/submit/${form}`).then(response=>{
+        //         console.log(response)
+        //         if(response.data.length <= 0){
+        //             setErrMessage("There has been an error in your submission")
+        //         }else{
+        //             setUser(response.data.user[0])
+        //             setMessage("Thank You!")
+        //             console.log(form);
+        //         }  
+        //     })
+        //     .catch(err => {
+        //         console.log("err.message")
+        //         setDBError(err.message)
+        //     });
+        // }else{
+        //     console.log('')
+        // }
 
         setMessage("Thank You!")
         console.log(form)
