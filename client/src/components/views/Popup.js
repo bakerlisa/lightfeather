@@ -7,8 +7,8 @@ const Popup = () => {
     const history = useHistory();
     const [supervisor, setSupervisor] = useState([]);
     const [form, setForm] = useState({
-        econtact:false,
-        tcontact:false,
+        emailOnly:false,
+        phoneOnly:false,
         supervisor: 1
     })
 
@@ -105,24 +105,24 @@ const Popup = () => {
     // on sumbit handler
     const onSubmitHandler = (event) =>{
         event.preventDefault();
-        // if(Object.values(error).every(item => item) ){
-        //     axios.post('http://localhost:8080/api/submit',form).then(response=>{
-        //         console.log(response)
-        //         if(response.data.length <= 0){
-        //             setErrMessage("There has been an error in your submission")
-        //         }else{
-        //             setUser(response.data.user[0])
-        //             setMessage("Thank You!")
-        //             console.log(form);
-        //         }  
-        //     })
-        //     .catch(err => {
-        //         console.log("err.message")
-        //         setDBError(err.message)
-        //     });
-        // }else{
-        //     console.log('')
-        // }
+        if(Object.values(error).every(item => item) ){
+            axios.post(`http://localhost:8080/api/submit/${form}`).then(response=>{
+                console.log(response)
+                if(response.data.length <= 0){
+                    setErrMessage("There has been an error in your submission")
+                }else{
+                    setUser(response.data.user[0])
+                    setMessage("Thank You!")
+                    console.log(form);
+                }  
+            })
+            .catch(err => {
+                console.log("err.message")
+                setDBError(err.message)
+            });
+        }else{
+            console.log('')
+        }
 
         setMessage("Thank You!")
         console.log(form)
@@ -169,7 +169,7 @@ const Popup = () => {
                 <div className="flex">
                     <div className={styled.col_2}>
                         <div className={styled.chkbxwpr}>
-                            <input type="checkbox" name="econtact" onChange={onCheckboxChange} />
+                            <input type="checkbox" name="emailOnly" onChange={onCheckboxChange} />
                             <label htmlFor="email">Email</label>
                         </div>
                         <input type="email" name="email" placeholder="Email: example@email.com..."  onChange={ValidateEmail} />
@@ -177,7 +177,7 @@ const Popup = () => {
 
                     <div className={styled.col_2}>
                         <div className={styled.chkbxwpr}>
-                            <input type="checkbox" name="tcontact" onChange={onCheckboxChange} />
+                            <input type="checkbox" name="phoneOnly" onChange={onCheckboxChange} />
                             <label htmlFor="phoneNumber">Phone:</label>
                         </div>
                         <input type="tel" name="phoneNumber" placeholder="Phone Number..." onChange={onChangeHandler} />

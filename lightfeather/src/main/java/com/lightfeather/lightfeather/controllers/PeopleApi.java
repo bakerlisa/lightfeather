@@ -1,6 +1,7 @@
 package com.lightfeather.lightfeather.controllers;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.stereotype.Controller;
@@ -38,8 +39,10 @@ public class PeopleApi {
     }
 
     @RequestMapping(value="/api/submit/{form}", method=RequestMethod.POST)
-    public void addPerson(@PathVariable("form") People form) {
-        peopleService.createPerson(form);
+    public void addPerson(@PathVariable("form") Optional<People> form) {
+            People person = new People(form);
+            System.out.println(form);        
+            peopleService.createPerson(form);
     }
 
 }
