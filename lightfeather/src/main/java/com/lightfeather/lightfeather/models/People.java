@@ -24,21 +24,14 @@ public class People {
     private Long id;
     
     @NotNull
-    @Size(min=3)
+    @Size(min=3, message="Please add first name")
     private String firstName;
     
     @NotNull
-    @Size(min=3)
+    @Size(min=3, message="Please add last name")
     private String lastName;
 
-    private String email;
-    private boolean econtact;
-
-    @Size(min=10)
-    private int phoneNumber;
-    private boolean tcontact;
-
-    @NotNull
+    @NotNull(message="Supervisor cannot be empty")
     private String supervisor;
 
     // This will not allow the createdAt column to be updated after creation
@@ -51,31 +44,24 @@ public class People {
     // CONSTRUCTORS
     public People(){}
 
-    public People(Long id, String firstName, String lastName, String email, boolean econtact, int phoneNumber, boolean tcontact, String supervisor) {
+    public People(Long id, String firstName, String lastName, String supervisor) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.email = email;
-        this.econtact = econtact;
-        this.phoneNumber = phoneNumber;
-        this.tcontact = tcontact;
         this.supervisor = supervisor;
     }
 
-    public People(Long id, String firstName, String lastName, String email, boolean econtact, int phoneNumber, boolean tcontact, String supervisor, Date createdAt, Date updatedAt) {
+    public People(Long id, String firstName, String lastName, String supervisor, Date createdAt, Date updatedAt) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.email = email;
-        this.econtact = econtact;
-        this.phoneNumber = phoneNumber;
-        this.tcontact = tcontact;
         this.supervisor = supervisor;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
     }
-    
+
     // GETTERS / SETTERS
+
     public Long getId() {
         return this.id;
     }
@@ -98,46 +84,6 @@ public class People {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
-    }
-
-    public String getEmail() {
-        return this.email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public boolean isEcontact() {
-        return this.econtact;
-    }
-
-    public boolean getEcontact() {
-        return this.econtact;
-    }
-
-    public void setEcontact(boolean econtact) {
-        this.econtact = econtact;
-    }
-
-    public int getPhoneNumber() {
-        return this.phoneNumber;
-    }
-
-    public void setPhoneNumber(int phoneNumber) {
-        this.phoneNumber = phoneNumber;
-    }
-
-    public boolean isTcontact() {
-        return this.tcontact;
-    }
-
-    public boolean getTcontact() {
-        return this.tcontact;
-    }
-
-    public void setTcontact(boolean tcontact) {
-        this.tcontact = tcontact;
     }
 
     public String getSupervisor() {
@@ -164,6 +110,8 @@ public class People {
         this.updatedAt = updatedAt;
     }
 
+
+    
     @PrePersist
     protected void onCreate(){
         this.createdAt = new Date();

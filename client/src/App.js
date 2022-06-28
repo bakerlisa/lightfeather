@@ -1,5 +1,6 @@
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import './App.scss';
+import People from './components/pages/People';
 import Popup from './components/views/Popup';
 
 function App() {
@@ -10,6 +11,11 @@ function App() {
           <Route exact path="/">
             <Popup />
           </Route>
+
+          <Route exact path="/people">
+            <People />
+          </Route>
+
         </Switch>
       </BrowserRouter>
     </div>
