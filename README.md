@@ -13,3 +13,6 @@ Open another tab in terminal<br/>
 1. http://localhost:3000/people
 2. Click on any Name
 
+![](https://github.com/lisabroadhead/lightfeather/blob/main/Screen%20Shot%202022-06-27%20at%208.49.26%20PM.png)
+
+
