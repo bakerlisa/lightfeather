@@ -2,7 +2,9 @@ package com.lightfeather.lightfeather.controllers;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
+import javax.xml.ws.Response;
 
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -26,22 +28,25 @@ public class PeopleApi {
         this.peopleService = peopleService;
     }
 
+    // All the people in the database
     @CrossOrigin(origins = "http://localhost:3000")
     @RequestMapping(value="/api/people", method=RequestMethod.GET)
     public List<People> index() {
         return peopleService.allPeople();
     }
-
     
+    // Single person in the database
+    @CrossOrigin(origins = "http://localhost:3000")
     @RequestMapping(value="/api/person/{id}")
     public People show(@PathVariable("id") Long id){
         People people = peopleService.findPerson(id);
         return people;
     }
 
+    @CrossOrigin(origins = "http://localhost:3000")
     @RequestMapping(value="/api/submit", method=RequestMethod.POST)
-    public void addPerson(@Valid @ModelAttribute("person") People person, BindingResult result) {
-        peopleService.createPerson(person);
+    public void addPerson(@PathVariable("form") People form) {
+        peopleService.createPerson(form);
     }
 
     // @GetMapping("/")

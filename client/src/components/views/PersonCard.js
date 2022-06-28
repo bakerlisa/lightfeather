@@ -1,5 +1,6 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom';
 import styled from "../css/PersonCard.module.scss"
 
 const PersonCard = (props) => {
@@ -14,7 +15,11 @@ const PersonCard = (props) => {
 
     return(
         <div className="personCard">
-            <h2>{props.fname} {props.lname}</h2>
+            <h2>
+            {
+                props.id ? <Link to={`person/${props.id}`}>{props.fname} {props.lname} </Link> : <>{props.fname} {props.lname}</>
+            }
+            </h2>
             {
                 supervisors.map((sup,i) => {
                     if(sup.id === props.supervisor){

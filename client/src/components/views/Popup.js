@@ -13,14 +13,13 @@ const Popup = () => {
 
     const lengths = {
         firstName: 3,
-        lastName: 3,
-        phoneNumber: 10
+        lastName: 3
     }
 
     const [error,setError] = useState({
         firstName: false,
         lastName: false,
-        phoneNumber: false
+        supervisor: false
     })
 
     const [dbError,setDBError] = useState({ id:0 })
@@ -87,20 +86,24 @@ const Popup = () => {
     const onSubmitHandler = (event) =>{
         event.preventDefault();
         // axios.post('http://localhost:8080/api/submit',form).then(response=>{
-        //     if(response.data.user.length <= 0){
+        //     console.log(response)
+        //     if(response.data.length <= 0){
         //         setErrMessage("There has been an error in your submission")
         //     }else{
         //         setUser(response.data.user[0])
         //         setMessage("Thank You!")
-        //         // window.location.reload(false);
+        //         console.log(form);
         //     }  
         // })
         // .catch(err => {
+        //     console.log(err)
         //     console.log(err.response.data.error.errors)
         //     setDBError(err.response.data.error.errors)
         // });
+
         setMessage("Thank You!")
         console.log(form);
+        
     }
 
     useEffect(() => {
@@ -110,21 +113,37 @@ const Popup = () => {
             handleSort(response.data)
         })
     })
+    
     return (
         <div className={styled.popWrp}>
             <h3>Notification Form </h3>
             {
-            message.length === 0 ? <form onSubmit={onSubmitHandler}>
+            message.length === 0 ? <form onSubmit={onSubmitHandler} method="post">
+                <div className="errWrp">
+                    {
+                        errorSize > 1 ? <><h4>Entries Required: </h4> {Object.keys(dbError).join(', ')}</> : ""
+                    }
+
+                    {
+                        errMessage.length > 1 ? errMessage : ""
+                    }
+                </div>
                 <p className={styled.required}>* Required Fields</p>
 
                 <div>
                     <label htmlFor="firstName">*First Name</label>
                     <input type="text" name="firstName" placeholder="First Name" onChange={onChangeHandler} />
+                    {
+                        error.firstName  ? "" : <span>Please enter a First Name</span>
+                    }
                 </div>
 
                 <div>
                     <label htmlFor="lastName">*Last Name</label>
                     <input type="text" name="lastName" placeholder="Last Name"  onChange={onChangeHandler}/>
+                    {
+                        error.lastName ? "" : <span>Please enter a Last Name</span>
+                    }
                 </div>
 
                 <h4>How woud you prefer to be notified?</h4>
@@ -157,6 +176,9 @@ const Popup = () => {
                             }
                         })}
                     </select>
+                    {
+                        error.supervisor === false ? "" : <span>Please select a supervisor</span>
+                    }
                 </div>
                 {
                     Object.keys(error).every((item) => error[item]) ? <input type="submit" value="Submit" className={styled.submit} /> : <input type="submit" value="Submit" className={styled.disabled} disabled />

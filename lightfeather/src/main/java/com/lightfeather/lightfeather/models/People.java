@@ -34,6 +34,11 @@ public class People {
     @NotNull(message="Supervisor cannot be empty")
     private String supervisor;
 
+    private String email;
+    private int phone;
+    private boolean econtact;
+    private boolean tcontact;
+
     // This will not allow the createdAt column to be updated after creation
     @Column(updatable=false)
     @DateTimeFormat(pattern="yyyy-MM-dd")
@@ -44,21 +49,31 @@ public class People {
     // CONSTRUCTORS
     public People(){}
 
-    public People(Long id, String firstName, String lastName, String supervisor) {
+    public People(Long id, String firstName, String lastName, String supervisor, String email, int phone, boolean econtact, boolean tcontact) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.supervisor = supervisor;
+        this.email = email;
+        this.phone = phone;
+        this.econtact = econtact;
+        this.tcontact = tcontact;
     }
 
-    public People(Long id, String firstName, String lastName, String supervisor, Date createdAt, Date updatedAt) {
+    public People(Long id, String firstName, String lastName, String supervisor, String email, int phone, boolean econtact, boolean tcontact, Date createdAt, Date updatedAt) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.supervisor = supervisor;
+        this.email = email;
+        this.phone = phone;
+        this.econtact = econtact;
+        this.tcontact = tcontact;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
     }
+
+    
 
     // GETTERS / SETTERS
 
@@ -94,6 +109,46 @@ public class People {
         this.supervisor = supervisor;
     }
 
+    public String getEmail() {
+        return this.email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public int getPhone() {
+        return this.phone;
+    }
+
+    public void setPhone(int phone) {
+        this.phone = phone;
+    }
+
+    public boolean isEcontact() {
+        return this.econtact;
+    }
+
+    public boolean getEcontact() {
+        return this.econtact;
+    }
+
+    public void setEcontact(boolean econtact) {
+        this.econtact = econtact;
+    }
+
+    public boolean isTcontact() {
+        return this.tcontact;
+    }
+
+    public boolean getTcontact() {
+        return this.tcontact;
+    }
+
+    public void setTcontact(boolean tcontact) {
+        this.tcontact = tcontact;
+    }
+
     public Date getCreatedAt() {
         return this.createdAt;
     }
@@ -109,7 +164,6 @@ public class People {
     public void setUpdatedAt(Date updatedAt) {
         this.updatedAt = updatedAt;
     }
-
 
     
     @PrePersist
