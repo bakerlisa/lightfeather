@@ -1,5 +1,7 @@
 # LightFeather - At Home Coding Challenge
 
+![](https://github.com/lisabroadhead/lightfeather/blob/main/Screen%20Shot%202022-06-27%20at%208.41.47%20PM.png) 
+
 Need 2 tabs open in terminal
 
 ### 1. Starts up React
