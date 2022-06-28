@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 
-@CrossOrigin(origins = "http://localhost:3000")
+
 @Controller
 public class PeopleApi {
     private final PeopleService peopleService;
@@ -38,7 +38,7 @@ public class PeopleApi {
         return people;
     }
 
-    
+    @CrossOrigin(origins = "http://localhost:3000")
     @RequestMapping(value="/api/submit/{form}", method=RequestMethod.POST)
     public void addPerson(@PathVariable("form") People form) {
         peopleService.createPerson(form);
