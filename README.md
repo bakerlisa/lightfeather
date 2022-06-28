@@ -1,6 +1,6 @@
 # LightFeather - At Home Coding Challenge
 
-![](https://github.com/lisabroadhead/lightfeather/blob/main/Screen%20Shot%202022-06-27%20at%208.41.47%20PM.png) 
+![](https://github.com/lisabroadhead/lightfeather/blob/main/Screen%20Shot%202022-06-28%20at%201.53.12%20PM.png) 
 ![](https://github.com/lisabroadhead/lightfeather/blob/main/Screen%20Shot%202022-06-27%20at%209.39.03%20PM.png)
 
 ### 1. Starts up React
