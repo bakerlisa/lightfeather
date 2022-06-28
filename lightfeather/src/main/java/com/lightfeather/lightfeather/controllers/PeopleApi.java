@@ -2,13 +2,8 @@ package com.lightfeather.lightfeather.controllers;
 
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.validation.Valid;
-import javax.xml.ws.Response;
-
-import org.springframework.validation.BindingResult;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -19,8 +14,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 
-
-@RestController
+@CrossOrigin(origins = "http://localhost:3000")
+@Controller
 public class PeopleApi {
     private final PeopleService peopleService;
 
@@ -43,7 +38,7 @@ public class PeopleApi {
         return people;
     }
 
-    @CrossOrigin(origins = "http://localhost:3000")
+    
     @RequestMapping(value="/api/submit/{form}", method=RequestMethod.POST)
     public void addPerson(@PathVariable("form") People form) {
         peopleService.createPerson(form);
