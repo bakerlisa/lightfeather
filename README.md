@@ -23,7 +23,7 @@ Trouble getting the backend to talk with the Front end. It works in Postman and 
 
 ![](https://github.com/lisabroadhead/lightfeather/blob/main/Screen%20Shot%202022-06-27%20at%208.49.26%20PM.png)
 ![](https://github.com/lisabroadhead/lightfeather/blob/main/Screen%20Shot%202022-06-27%20at%208.58.30%20PM.png)
-![](https://github.com/lisabroadhead/lightfeather/blob/main/Screen%20Shot%202022-06-27%20at%208.58.30%20PM.png)
-![](https://github.com/lisabroadhead/lightfeather/blob/main/Screen%20Shot%202022-06-27%20at%208.58.30%20PM.png)
+![](https://github.com/lisabroadhead/lightfeather/blob/main/Screen%20Shot%202022-06-28%20at%202.22.25%20PM.png)
+![](https://github.com/lisabroadhead/lightfeather/blob/main/Screen%20Shot%202022-06-28%20at%202.36.37%20PM.png)
 
 
