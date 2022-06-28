@@ -18,7 +18,10 @@ const PersonCard = (props) => {
             {
                 supervisors.map((sup,i) => {
                     if(sup.id === props.supervisor){
-                        return <>  <p className={styled.just}>{sup.jurisdiction} - {sup.lastName}, {sup.firstName} </p> <p className={styled.phone}>{sup.phone}</p></>
+                        return <>
+                            <p className={styled.just}>{sup.jurisdiction} - {sup.lastName}, {sup.firstName} </p> 
+                            <p className={styled.phone}>{sup.phone}</p>
+                        </>
                     }
                 })
             }
